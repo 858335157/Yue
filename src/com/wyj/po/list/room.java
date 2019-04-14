@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author 王宇杰
  * 
  */
-public class room implements Serializable {
+public class Room implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class room implements Serializable {
 	/**
 	 * 无参构造器
 	 */
-	public room() {
+	public Room() {
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class room implements Serializable {
 	 * @param number
 	 * @param maxNumber
 	 */
-	public room(int userId, int[] list, String[] type, String[] name,
+	public Room(int userId, int[] list, String[] type, String[] name,
 			int[] owner, String[] place, String[] time, int[] number, int[] maxNumber) {
 		this.userId = userId;
 		this.list = list;

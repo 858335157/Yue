@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author 王宇杰
  * 
  */
-public class trends implements Serializable {
+public class Trends implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class trends implements Serializable {
 	/**
 	 * 无参构造器
 	 */
-	public trends() {
+	public Trends() {
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class trends implements Serializable {
 	 * @param commentNum
 	 * @param agreeNum
 	 */
-	public trends(int userId, int[] list, int[] owner, String[] nick,
+	public Trends(int userId, int[] list, int[] owner, String[] nick,
 			String[] pTime, String[] number, String[] content, int[] shareNum,
 			int[] commentNum, int[] agreeNum) {
 		this.userId = userId;

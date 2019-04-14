@@ -8,21 +8,66 @@ import java.io.Serializable;
  * @author 王宇杰
  * 
  */
-public class comment implements Serializable {
+public class Comment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int userId;
-	private int trendsId;
-	private int[] list;
+	private String userId;
+	private String trendsId;
+	private String[] list;
 	private String[] nick;
 	private String[] content;
 	private int[] agreeNum;
 
+	private static int Length;
+
 	/**
 	 * 无参构造器
 	 */
-	public comment() {
+	public Comment() {
+	}
+
+	/**
+	 * 直接构造器
+	 * 
+	 * @param str
+	 * @param flag
+	 */
+	public Comment(String str, int flag) {
+		String[] K_V = str.substring(1, str.length()).split(";");
+		for (int i = 0; i < K_V.length - 1; i++) {
+			String key = K_V[i].substring(0, K_V[i].indexOf(':'));
+			String value = K_V[i].substring(K_V[i].indexOf(':') + 1);
+			if (key.equals("userId")) {
+				userId = value;
+			} else if (key.equals("trendsId")) {
+				trendsId = value;
+			} else if (key.equals("list")) {
+				String[] K_V_list = value.substring(1, str.length()).split(";");
+				for (int j = 0; j < Length; j++) {
+					list[j] = K_V_list[j].substring(2);
+				}
+			} else if (key.equals("nick")) {
+				String[] K_V_nick = value.substring(1, str.length()).split(";");
+				for (int j = 0; j < Length; j++) {
+					nick[j] = K_V_nick[j].substring(2);
+				}
+			} else if (key.equals("content")) {
+				String[] K_V_Lmessage = value.substring(1, str.length()).split(
+						";");
+				for (int j = 0; j < Length; j++) {
+					content[j] = K_V_Lmessage[j].substring(2);
+				}
+			} else if (key.equals("agreeNum")) {
+				String[] K_V_LsTime = value.substring(1, str.length()).split(
+						";");
+				for (int j = 0; j < Length; j++) {
+					agreeNum[j] = Integer.valueOf(K_V_LsTime[j].substring(2));
+				}
+			} else {
+				System.out.println("Error:Comment");
+			}
+		}
 	}
 
 	/**
@@ -35,8 +80,8 @@ public class comment implements Serializable {
 	 * @param content
 	 * @param agreeNum
 	 */
-	public comment(int userId, int trendsId, int[] list, String[] nick,
-			String[] content, int[] agreeNum) {
+	public Comment(String userId, String trendsId, String[] list,
+			String[] nick, String[] content, int[] agreeNum) {
 		this.userId = userId;
 		this.trendsId = trendsId;
 		this.list = list;
@@ -46,11 +91,29 @@ public class comment implements Serializable {
 	}
 
 	/**
+	 * 设置评论列表人数
+	 * 
+	 * @param Length
+	 */
+	public void setLength(int Length) {
+		Comment.Length = Length;
+	}
+
+	/**
+	 * 获取评论列表人数
+	 * 
+	 * @return Length
+	 */
+	public int getLength() {
+		return Length;
+	}
+
+	/**
 	 * 设置用户id
 	 * 
 	 * @param userId
 	 */
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -59,7 +122,7 @@ public class comment implements Serializable {
 	 * 
 	 * @return userId
 	 */
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
@@ -68,7 +131,7 @@ public class comment implements Serializable {
 	 * 
 	 * @param trendsId
 	 */
-	public void setTrendsId(int trendsId) {
+	public void setTrendsId(String trendsId) {
 		this.trendsId = trendsId;
 	}
 
@@ -77,7 +140,7 @@ public class comment implements Serializable {
 	 * 
 	 * @return trendsId
 	 */
-	public int getTrendsId() {
+	public String getTrendsId() {
 		return trendsId;
 	}
 
@@ -86,7 +149,7 @@ public class comment implements Serializable {
 	 * 
 	 * @param list
 	 */
-	public void setList(int[] list) {
+	public void setList(String[] list) {
 		this.list = list;
 	}
 
@@ -95,7 +158,7 @@ public class comment implements Serializable {
 	 * 
 	 * @return list
 	 */
-	public int[] getList() {
+	public String[] getList() {
 		return list;
 	}
 
@@ -151,6 +214,77 @@ public class comment implements Serializable {
 	 */
 	public int[] getAgreeNum() {
 		return agreeNum;
+	}
+
+	/**
+	 * 重写toString方法，方便序列化
+	 */
+	@Override
+	public String toString() {
+
+		StringBuffer bf = new StringBuffer();
+		bf.append('{');
+
+		bf.append("userId");
+		bf.append(":");
+		bf.append(userId);
+		bf.append(';');
+
+		bf.append("trendsId");
+		bf.append(":");
+		bf.append(trendsId);
+		bf.append(';');
+
+		bf.append("list");
+		bf.append(":");
+		bf.append('{');
+		for (int i = 0; i < Length; i++) {
+			bf.append(i);
+			bf.append(":");
+			bf.append(list[i]);
+			bf.append(';');
+		}
+		bf.append('}');
+		bf.append(';');
+
+		bf.append("nick");
+		bf.append(":");
+		bf.append('{');
+		for (int i = 0; i < Length; i++) {
+			bf.append(i);
+			bf.append(":");
+			bf.append(nick[i]);
+			bf.append(';');
+		}
+		bf.append('}');
+		bf.append(';');
+
+		bf.append("content");
+		bf.append(":");
+		bf.append('{');
+		for (int i = 0; i < Length; i++) {
+			bf.append(i);
+			bf.append(":");
+			bf.append(content[i]);
+			bf.append(';');
+		}
+		bf.append('}');
+		bf.append(';');
+
+		bf.append("agreeNum");
+		bf.append(":");
+		bf.append('{');
+		for (int i = 0; i < Length; i++) {
+			bf.append(i);
+			bf.append(":");
+			bf.append(agreeNum[i]);
+			bf.append(';');
+		}
+		bf.append('}');
+		bf.append(';');
+
+		bf.append('}');
+		return bf.toString();
 	}
 
 }

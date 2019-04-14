@@ -8,4 +8,71 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- 登录 -->
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.wyj.service.Login</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
+	<!-- 登录结束 -->
+	
+  <!-- 注册 -->
+	<servlet>
+		<servlet-name>Register</servlet-name>
+		<servlet-class>com.wyj.service.Register</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Register</servlet-name>
+		<url-pattern>/Register</url-pattern>
+	</servlet-mapping>
+	<!-- 注册结束 -->
+	
+  <!-- 修改密码 -->
+	<servlet>
+		<servlet-name>ChangePSWD</servlet-name>
+		<servlet-class>com.wyj.service.ChangePSWD</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChangePSWD</servlet-name>
+		<url-pattern>/ChangePSWD</url-pattern>
+	</servlet-mapping>
+	<!-- 修改密码结束 -->
+	
+  <!-- 获取魅力榜 -->
+	<servlet>
+		<servlet-name>SearchCharmList</servlet-name>
+		<servlet-class>com.wyj.service.SearchCharmList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchCharmList</servlet-name>
+		<url-pattern>/SearchCharmList</url-pattern>
+	</servlet-mapping>
+	<!-- 获取魅力榜结束 -->
+	
+	<!-- 获取聊天列表 -->
+	<servlet>
+		<servlet-name>SearchChatList</servlet-name>
+		<servlet-class>com.wyj.service.SearchChatList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchChatList</servlet-name>
+		<url-pattern>/SearchChatList</url-pattern>
+	</servlet-mapping>
+	<!-- 获取聊天列表结束 -->
+	
+	<!-- 获取动态评论列表 -->
+	<servlet>
+		<servlet-name>SearchCommentList</servlet-name>
+		<servlet-class>com.wyj.service.SearchCommentList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchCommentList</servlet-name>
+		<url-pattern>/SearchCommentList</url-pattern>
+	</servlet-mapping>
+	<!-- 获取动态评论列表结束 -->
+	
 </web-app>
